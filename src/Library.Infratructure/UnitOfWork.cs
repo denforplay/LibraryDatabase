@@ -5,7 +5,7 @@ namespace Library.Infrastructure
 {
     public class UnitOfWork
     {
-        private static object _syncObject;
+        private static object _syncObject = new();
         private static AbonentRepository _abonentRepository;
 
         public static AbonentRepository GetAbonentRepository
@@ -14,7 +14,7 @@ namespace Library.Infrastructure
             {
                 if (_abonentRepository is null)
                     lock (_syncObject)
-                        _abonentRepository = new AbonentRepository(ConnectionStrings.MSSQLConnectionString);
+                        _abonentRepository = new AbonentRepository(ConnectionStrings.MSSQLConnectionString, "AbonentTable");
 
                 return _abonentRepository;
             }

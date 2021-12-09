@@ -4,10 +4,10 @@ namespace Library.Domain.Entities
 {
     public class Abonent : EntityBase<int>
     {
-        public int GenderId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
+        public int GenderId { get; set; }
         public DateTime BirthDate { get; set; }
     }
 }

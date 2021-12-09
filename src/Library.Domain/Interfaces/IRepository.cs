@@ -4,6 +4,7 @@
     {
         Task Create(T entity);
         Task<T> Read(int id);
+        Task<IEnumerable<T>> ReadAll();
         Task Update(int id, T entity);
         Task Delete(int id);
     }
