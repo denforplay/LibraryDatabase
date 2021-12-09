@@ -2,12 +2,14 @@
 using Library.Infrastructure.Repositories;
 using System;
 using Xunit;
+using System.Configuration;
+using Library.Domain.Configurations;
 
 namespace Library.Infrastructure.Tests.RepositoriesTests
 {
     public class AbonentRepositoryTests
     {
-        AbonentRepository abonentRepository = new AbonentRepository("Server=(localdb)\\mssqllocaldb;Database=LibraryDb;Trusted_Connection=True");
+        AbonentRepository abonentRepository = new AbonentRepository(ConnectionStrings.MSSQLConnectionString);
 
         [Fact]
         public async void TestAddAbonent()
