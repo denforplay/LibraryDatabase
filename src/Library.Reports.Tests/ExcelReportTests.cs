@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Library.Reports.Tests
 {
-    public class ExcelReportTest
+    public class ExcelReportTests
     {
         [Fact]
         public void Test()

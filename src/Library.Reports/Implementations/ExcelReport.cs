@@ -13,11 +13,12 @@ namespace Library.Reports.Implementations
 
         public override void WriteReport(string filepath)
         {
-            using(var wbook = new XLWorkbook())
+            var abonents = _abonentRepository.ReadAll().Result;
+            var booksGroupings = abonents.Select(x => x.Books).SelectMany(x => x).GroupBy(x => x.Id);
+
+            using (var wbook = new XLWorkbook())
             {
                 var ws = wbook.Worksheets.Add("BooksTakenFrequency");
-                var abonents = _abonentRepository.ReadAll().Result;
-                var booksGroupings = abonents.Select(x => x.Books).SelectMany(x => x).GroupBy(x => x.Id);
                 for (int i = 0; i < booksGroupings.Count(); i++)
                 {
                     var bookGroup = booksGroupings.ElementAt(i);
