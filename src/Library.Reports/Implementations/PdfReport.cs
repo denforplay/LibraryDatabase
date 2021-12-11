@@ -2,7 +2,6 @@
 using iTextSharp.text.pdf;
 using Library.Infrastructure.Repositories;
 using Library.Reports.Base;
-using System.Text;
 
 namespace Library.Reports.Implementations
 {
