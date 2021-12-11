@@ -9,13 +9,13 @@ using System.Text;
 
 namespace Library.Infrastructure.Repositories
 {
-    public abstract class ReflectionRepository<T> : IRepository<T> where T : EntityBase<int>
+    public abstract class ReflectionRepositoryBase<T> : IRepository<T> where T : EntityBase<int>
     {
         private string _connectionString;
         private string _tableName;
         protected List<PropertyInfo> _properties;
 
-        public ReflectionRepository(string connectionString)
+        public ReflectionRepositoryBase(string connectionString)
         {
             _connectionString = connectionString;
             _properties = typeof(T).GetProperties().ToList();

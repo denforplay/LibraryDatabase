@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
-    public class BookStatesRepository : ReflectionRepository<BookState>
+    public class BookStatesRepository : ReflectionRepositoryBase<BookState>
     {
         public BookStatesRepository(string connectionString) : base(connectionString)
         {

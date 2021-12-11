@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
-    public class GenreRepository : ReflectionRepository<Genre>
+    public class GenreRepository : ReflectionRepositoryBase<Genre>
     {
         public GenreRepository(string connectionString) : base(connectionString)
         {
