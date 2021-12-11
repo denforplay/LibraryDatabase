@@ -5,7 +5,7 @@ namespace Library.Infrastructure.Repositories
 {
     public class AbonentRepository : ReflectionRepository<Abonent>
     {
-        public AbonentRepository(string connectionString, string tableName) : base(connectionString, tableName)
+        public AbonentRepository(string connectionString) : base(connectionString)
         {
         }
 
@@ -15,14 +15,15 @@ namespace Library.Infrastructure.Repositories
             {
                 return new Abonent
                 {
-                    Id = int.Parse(dataReader["Id"].ToString()),
-                    Name = dataReader["Name"].ToString(),
-                    Surname = dataReader["Surname"].ToString(),
-                    Patronymic = dataReader["Patronymic"].ToString(),
-                    GenderId = int.Parse(dataReader["GenderId"].ToString()),
-                    BirthDate = DateTime.Parse(dataReader["BirthDate"].ToString())
+                    Id = int.Parse(dataReader[nameof(Abonent.Id)].ToString()),
+                    Name = dataReader[nameof(Abonent.Name)].ToString(),
+                    Surname = dataReader[nameof(Abonent.Surname)].ToString(),
+                    Patronymic = dataReader[nameof(Abonent.Patronymic)].ToString(),
+                    GenderId = int.Parse(dataReader[nameof(Abonent.GenderId)].ToString()),
+                    BirthDate = DateTime.Parse(dataReader[nameof(Abonent.BirthDate)].ToString())
                 };
             });
+
             task.Start();
             return task; 
         }

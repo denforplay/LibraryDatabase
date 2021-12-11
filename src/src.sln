@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{CAFC496F-7011-431D-A505-C6CEBA6D45B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure", "Library.Infratructure\Library.Infrastructure.csproj", "{A5549B03-564E-4710-AB37-3B4AA36645FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure", "Library.Infratructure\Library.Infrastructure.csproj", "{A5549B03-564E-4710-AB37-3B4AA36645FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.Tests", "Library.Infrastructure.Tests\Library.Infrastructure.Tests.csproj", "{0A67B838-66AB-47FC-984D-D5C987EC0AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.Tests", "Library.Infrastructure.Tests\Library.Infrastructure.Tests.csproj", "{0A67B838-66AB-47FC-984D-D5C987EC0AC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

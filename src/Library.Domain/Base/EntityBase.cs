@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Library.Domain.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Domain.Base
 {
@@ -9,7 +10,6 @@ namespace Library.Domain.Base
 
     public abstract class EntityBase<TKey> : IEntityBase<TKey>
     {
-        [Key]
-        public TKey Id { get; set; }
+        public virtual TKey Id { get; set; }
     }
 }

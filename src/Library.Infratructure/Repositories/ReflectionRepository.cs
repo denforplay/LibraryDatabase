@@ -1,5 +1,8 @@
-﻿using Library.Domain.Base;
+﻿using Library.Domain.Attributes;
+using Library.Domain.Base;
+using Library.Domain.Configurations;
 using Library.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
@@ -10,14 +13,14 @@ namespace Library.Infrastructure.Repositories
     {
         private string _connectionString;
         private string _tableName;
-        private List<PropertyInfo> _properties;
+        protected List<PropertyInfo> _properties;
 
-        public ReflectionRepository(string connectionString, string tableName)
+        public ReflectionRepository(string connectionString)
         {
             _connectionString = connectionString;
-            _tableName = tableName;
             _properties = typeof(T).GetProperties().ToList();
-            _properties.Remove(_properties.Find(x => x.Name == "Id"));
+            _properties.RemoveAll(x => x.GetCustomAttribute<NotTableFieldAttribute>() is not null);
+            _tableName = typeof(T).GetCustomAttribute<TableAttribute>().Name;
         }
 
         public async Task Create(T entity)
@@ -117,16 +120,18 @@ namespace Library.Infrastructure.Repositories
                 settedParameters.Append($"{property.Name}=@{property.Name}, ");
             }
 
-            string sqlExpression = string.Format(SqlExpressions.UpdateItemExpression, _tableName, settedParameters, _tableName, "WHERE Id = @Id");
+            settedParameters.Remove(settedParameters.Length - 2, 1);
+            string sqlExpression = string.Format(SqlExpressions.UpdateItemExpression, _tableName, settedParameters, "WHERE Id = @Id");
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                using(SqlCommand command = new SqlCommand(sqlExpression))
+                using(SqlCommand command = new SqlCommand(sqlExpression, connection))
                 {
-                    command.Parameters.Add(new SqlParameter("@Id", id));
                     foreach (var property in _properties)
                         command.Parameters.Add(new SqlParameter($"@{property.Name}", property.GetValue(entity)));
+
+                    command.Parameters.Add(new SqlParameter("@Id", id));
 
                     await command.ExecuteNonQueryAsync();
                 }

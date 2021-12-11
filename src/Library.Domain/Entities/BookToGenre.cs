@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Domain.Entities
 {
-    [Table("GenderType")]
-    public class Gender : EntityBase<int>
+    [Table("BookGenresTable")]
+    public class BookToGenre : EntityBase<int>
     {
-        string Name { get; set; }
+        public int GenreId { get; set; } 
     }
 }
