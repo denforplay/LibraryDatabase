@@ -13,13 +13,12 @@ namespace Library.Reports.Implementations
 
         public override void WriteReport(string filepath)
         {
-            Document document = new Document();
-            PdfWriter.GetInstance(document, new FileStream(filepath, FileMode.Create));
-
-            document.Open();
             var abonents = _abonentRepository.ReadAll().Result;
             var booksGroupings = abonents.Select(x => x.Books).SelectMany(x => x).GroupBy(x => x.Id);
 
+            Document document = new Document();
+            PdfWriter.GetInstance(document, new FileStream(filepath, FileMode.Create));
+            document.Open();
             PdfPTable table = new PdfPTable(2);
             PdfPCell cell1 = new PdfPCell(new Phrase("Book title"));
             PdfPCell cell2 = new PdfPCell(new Phrase("Count of taken"));
