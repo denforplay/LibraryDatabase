@@ -14,5 +14,8 @@ namespace Library.Domain.Entities
         public string Patronymic { get; set; }
         public int GenderId { get; set; }
         public DateTime BirthDate { get; set; }
+
+        [NotTableField]
+        public IEnumerable<Book> Books { get; set; }
     }
 }
