@@ -2,6 +2,7 @@
 {
     public interface IReportWriter
     {
-        void WriteReport(string filepath);
+        void WriteBookFrequencyReport(string filepath);
+        void WriteAbonentsBooksReport(string filepath, DateTime fromTime, DateTime toTime);
     }
 }

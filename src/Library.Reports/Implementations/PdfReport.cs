@@ -2,6 +2,7 @@
 using iTextSharp.text.pdf;
 using Library.Infrastructure.Repositories;
 using Library.Reports.Base;
+using System.Text;
 
 namespace Library.Reports.Implementations
 {
@@ -11,7 +12,7 @@ namespace Library.Reports.Implementations
         {
         }
 
-        public override void WriteReport(string filepath)
+        public override void WriteBookFrequencyReport(string filepath)
         {
             var abonents = _abonentRepository.ReadAll().Result;
             var booksGroupings = abonents.Select(x => x.Books).SelectMany(x => x).GroupBy(x => x.Id);
@@ -30,6 +31,50 @@ namespace Library.Reports.Implementations
                 var bookGroup = booksGroupings.ElementAt(i);
                 table.AddCell(new PdfPCell(new Phrase(bookGroup.ElementAt(0).Title)));
                 table.AddCell(new PdfPCell(new Phrase(bookGroup.Count().ToString())));
+            }
+
+            document.Add(table);
+
+            document.Close();
+        }
+
+        public override void WriteAbonentsBooksReport(string filepath, DateTime fromTime, DateTime toTime)
+        {
+            var abonentsToBooks = _abonentBooksRepository.ReadAll().Result.
+               Where(x => x.TakenDate.CompareTo(fromTime) >= 0 && x.TakenDate.CompareTo(toTime) <= 0);
+            var abonents = _abonentRepository.ReadAll().Result;
+            var abonentBooksGroupedByGenre = abonents.Select(abonent => new
+            {
+                Name = abonent.Name,
+                Surname = abonent.Surname,
+                Patronymic = abonent.Patronymic,
+                Books = abonent.Books.Where(x => abonentsToBooks.Where(y => y.Id == abonent.Id).Select(x => x.BookId).Contains(x.Id)).GroupBy(x => x.Genre)
+            });
+
+            Document document = new Document();
+            PdfWriter.GetInstance(document, new FileStream(filepath, FileMode.Create));
+            document.Open();
+            PdfPTable table = new PdfPTable(3);
+            table.AddCell(new PdfPCell(new Phrase("Abonent FIO")));
+            table.AddCell(new PdfPCell(new Phrase("Genre")));
+            table.AddCell(new PdfPCell(new Phrase("Books")));
+
+            foreach (var abonent in abonentBooksGroupedByGenre)
+            {
+                string abonentFIO = $"{abonent.Name} {abonent.Name} {abonent.Patronymic}";
+                table.AddCell(new PdfPCell(new Phrase(abonentFIO)));
+                var genreCell = new PdfPCell();
+                var booksCell = new PdfPCell(new Phrase(""));
+                foreach (var genreBooks in abonent.Books)
+                {
+                    genreCell.Phrase = new Phrase(genreCell.Phrase + $"{genreBooks.Key}\n");
+                    foreach (var book in genreBooks)
+                    {
+                        booksCell.Phrase = new Phrase(booksCell.Phrase.Content + $"{book.Title},");
+                    }
+                }
+                table.AddCell(genreCell);
+                table.AddCell(booksCell);
             }
 
             document.Add(table);

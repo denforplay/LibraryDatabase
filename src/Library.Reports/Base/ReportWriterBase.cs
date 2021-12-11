@@ -13,6 +13,8 @@ namespace Library.Reports.Base
             _abonentBooksRepository = abonentToBookRepository;
         }
 
-        public abstract void WriteReport(string filepath);
+        public abstract void WriteAbonentsBooksReport(string filepath, DateTime fromTime, DateTime toTime);
+
+        public abstract void WriteBookFrequencyReport(string filepath);
     }
 }

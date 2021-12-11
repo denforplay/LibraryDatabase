@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Attributes;
 using Library.Domain.Base;
+using Library.Domain.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Domain.Entities
@@ -11,11 +12,12 @@ namespace Library.Domain.Entities
         public override int Id { get; set; }
 
         public string Title { get; set; }
+        public int GenreId { get; set; }
+
+        [NotTableField]
+        public BookGenre Genre { get; set; }
 
         [NotTableField]
         public IEnumerable<Author> Authors { get; set; }
-
-        [NotTableField]
-        public IEnumerable<Genre> BookGenres { get; set; }
     }
 }
