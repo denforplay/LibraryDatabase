@@ -3,12 +3,22 @@ using Library.Reports.Base;
 using ClosedXML.Excel;
 using System.Linq;
 using System.Text;
+using Library.Domain.Entities;
+using Library.Domain.Interfaces;
 
 namespace Library.Reports.Implementations
 {
+    /// <summary>
+    /// Represents creating excel report
+    /// </summary>
     public class ExcelReport : ReportWriterBase
     {
-        public ExcelReport(AbonentRepository abonentRepository, AbonentToBookRepository abonentToBookRepository) : base(abonentRepository, abonentToBookRepository)
+        /// <summary>
+        /// Excel report constructor
+        /// </summary>
+        /// <param name="abonentRepository">Repository to work with abonents</param>
+        /// <param name="abonentToBookRepository">Repository to work with data of abonents books</param>
+        public ExcelReport(IRepository<Abonent> abonentRepository, IRepository<AbonentBook> abonentToBookRepository) : base(abonentRepository, abonentToBookRepository)
         {
         }
 

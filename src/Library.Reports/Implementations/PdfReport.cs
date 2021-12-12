@@ -1,13 +1,23 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Library.Domain.Entities;
+using Library.Domain.Interfaces;
 using Library.Infrastructure.Repositories;
 using Library.Reports.Base;
 
 namespace Library.Reports.Implementations
 {
+    /// <summary>
+    /// Represents pdf report
+    /// </summary>
     public class PdfReport : ReportWriterBase
     {
-        public PdfReport(AbonentRepository abonentRepository, AbonentToBookRepository abonentToBookRepository) : base(abonentRepository, abonentToBookRepository)
+        /// <summary>
+        /// Pdf report constructor
+        /// </summary>
+        /// <param name="abonentRepository">Repository to work with abonents</param>
+        /// <param name="abonentToBookRepository">Repository to work with data of abonents books</param>
+        public PdfReport(IRepository<Abonent> abonentRepository, IRepository<AbonentBook> abonentToBookRepository) : base(abonentRepository, abonentToBookRepository)
         {
         }
 

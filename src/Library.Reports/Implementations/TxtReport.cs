@@ -3,8 +3,16 @@ using Library.Reports.Base;
 
 namespace Library.Reports.Implementations
 {
+    /// <summary>
+    /// Represents txt report
+    /// </summary>
     public class TxtReport : ReportWriterBase
     {
+        /// <summary>
+        /// Pdf report constructor
+        /// </summary>
+        /// <param name="abonentRepository">Repository to work with abonents</param>
+        /// <param name="abonentToBookRepository">Repository to work with data of abonents books</param>
         public TxtReport(AbonentRepository abonentRepository, AbonentToBookRepository abonentToBookRepository) : base(abonentRepository, abonentToBookRepository)
         {
         }

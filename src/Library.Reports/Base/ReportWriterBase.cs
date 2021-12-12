@@ -1,13 +1,22 @@
-﻿using Library.Infrastructure.Repositories;
+﻿using Library.Domain.Entities;
+using Library.Domain.Interfaces;
 
 namespace Library.Reports.Base
 {
+    /// <summary>
+    /// Represents report writer base
+    /// </summary>
     public abstract class ReportWriterBase : IReportWriter
     {
-        protected AbonentRepository _abonentRepository;
-        protected AbonentToBookRepository _abonentBooksRepository;
+        protected IRepository<Abonent> _abonentRepository;
+        protected IRepository<AbonentBook> _abonentBooksRepository;
 
-        public ReportWriterBase(AbonentRepository abonentRepository, AbonentToBookRepository abonentToBookRepository)
+        /// <summary>
+        /// Report writer constructor
+        /// </summary>
+        /// <param name="abonentRepository">Abonent repository</param>
+        /// <param name="abonentToBookRepository">Abonent to book repository</param>
+        public ReportWriterBase(IRepository<Abonent> abonentRepository, IRepository<AbonentBook> abonentToBookRepository)
         {
             _abonentRepository = abonentRepository;
             _abonentBooksRepository = abonentToBookRepository;

@@ -1,6 +1,5 @@
 ﻿using Library.Domain.Attributes;
 using Library.Domain.Base;
-using Library.Domain.Configurations;
 using Library.Domain.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
@@ -9,12 +8,20 @@ using System.Text;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Repository realize crud operations using reflection
+    /// </summary>
+    /// <typeparam name="T">Type of entity in repository</typeparam>
     public abstract class ReflectionRepositoryBase<T> : IRepository<T> where T : EntityBase<int>
     {
         private string _connectionString;
         private string _tableName;
         protected List<PropertyInfo> _properties;
 
+        /// <summary>
+        /// Reflection repository constructor
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
         public ReflectionRepositoryBase(string connectionString)
         {
             _connectionString = connectionString;
@@ -70,7 +77,6 @@ namespace Library.Infrastructure.Repositories
                         while(reader.Read())
                         {
                             return await CreateFromReader(reader);
-                            break;
                         }
                     }
                 }
@@ -79,6 +85,11 @@ namespace Library.Infrastructure.Repositories
             throw new Exception("Some troubles with read in reflection repository");
         }
 
+        /// <summary>
+        /// Method creates entity from sql data reader
+        /// </summary>
+        /// <param name="dataReader">SQL data reader</param>
+        /// <returns> Operation of creating new entity</returns>
         protected abstract Task<T> CreateFromReader(SqlDataReader dataReader);
 
         public async Task<IEnumerable<T>> ReadAll()
@@ -122,7 +133,7 @@ namespace Library.Infrastructure.Repositories
 
             settedParameters.Remove(settedParameters.Length - 2, 1);
             string sqlExpression = string.Format(SqlExpressions.UpdateItemExpression, _tableName, settedParameters, "WHERE Id = @Id");
-
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

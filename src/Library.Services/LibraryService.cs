@@ -2,15 +2,22 @@
 using Library.Domain.Enums;
 using Library.Domain.Interfaces;
 using Library.Domain.Interfaces.Services;
-using System.Linq;
 
 namespace Library.Service
 {
+    /// <summary>
+    /// Represents library service functionality
+    /// </summary>
     public class LibraryService : ILibraryService
     {
         private IRepository<Abonent> _abonentRepository;
         private IRepository<Book> _bookRepository;
 
+        /// <summary>
+        /// Library service constructor
+        /// </summary>
+        /// <param name="abonentRepository">Repository to work with abonents data</param>
+        /// <param name="bookRepository">Repository to work with book data</param>
         public LibraryService(IRepository<Abonent> abonentRepository, IRepository<Book> bookRepository)
         {
             _abonentRepository = abonentRepository;
