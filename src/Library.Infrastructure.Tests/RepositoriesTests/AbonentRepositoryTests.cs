@@ -10,7 +10,7 @@ namespace Library.Infrastructure.Tests.RepositoriesTests
     public class AbonentRepositoryTests
     {
         private AbonentRepository _abonentRepository = new AbonentRepository(ConnectionStrings.MSSQLConnectionString);
-
+        
         [Fact]
         public async void TestAddAbonent()
         {

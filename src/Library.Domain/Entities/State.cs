@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Domain.Entities
 {
-    [Table("BookStatesTable")]
-    public class BookState : EntityBase<int>
+    [Table("StatesTable")]
+    public class State : EntityBase<int>
     {
         public Enums.BookState Value { get; set; }
     }

@@ -6,9 +6,9 @@ using Xunit;
 
 namespace Library.Infrastructure.Tests.RepositoriesTests
 {
-    public class BookStateRepositoryTests
+    public class StateRepositoryTests
     {
-        BookStatesRepository _bookStatesRepository = new BookStatesRepository(ConnectionStrings.MSSQLConnectionString);
+        StatesRepository _bookStatesRepository = new StatesRepository(ConnectionStrings.MSSQLConnectionString);
 
         [Fact]
         public async void TestReadById()

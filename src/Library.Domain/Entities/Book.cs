@@ -15,6 +15,9 @@ namespace Library.Domain.Entities
         public int GenreId { get; set; }
 
         [NotTableField]
+        public Enums.BookState State { get; set; }
+
+        [NotTableField]
         public BookGenre Genre { get; set; }
 
         [NotTableField]

@@ -24,6 +24,7 @@ namespace Library.Infrastructure.Repositories
                     Id = id,
                     GenreId = genreId,
                     Title = dataReader[nameof(Book.Title)].ToString(),
+                    State = new AbonentToBookRepository(ConnectionStrings.MSSQLConnectionString).ReadAll().Result.Where(x => x.BookId == id).OrderByDescending(x => x.TakenDate).First().BookState,
                     Authors = new AuthorsRepository(ConnectionStrings.MSSQLConnectionString).ReadAll().Result.Where(x => bookAuthors.Contains(x.Id)),
                     Genre = Enum.Parse<BookGenre>(new GenreRepository(ConnectionStrings.MSSQLConnectionString).ReadAll().Result.First(x => x.Id == genreId).Name)
                 };
