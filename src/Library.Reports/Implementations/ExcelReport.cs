@@ -1,7 +1,5 @@
-﻿using Library.Infrastructure.Repositories;
-using Library.Reports.Base;
+﻿using Library.Reports.Base;
 using ClosedXML.Excel;
-using System.Linq;
 using System.Text;
 using Library.Domain.Entities;
 using Library.Domain.Interfaces;

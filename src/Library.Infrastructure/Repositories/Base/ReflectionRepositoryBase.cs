@@ -2,6 +2,7 @@
 using Library.Domain.Base;
 using Library.Domain.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
@@ -24,6 +25,7 @@ namespace Library.Infrastructure.Repositories
         /// <param name="connectionString">Connection string</param>
         public ReflectionRepositoryBase(string connectionString)
         {
+
             _connectionString = connectionString;
             _properties = typeof(T).GetProperties().ToList();
             _properties.RemoveAll(x => x.GetCustomAttribute<NotTableFieldAttribute>() is not null);
@@ -74,6 +76,8 @@ namespace Library.Infrastructure.Repositories
                     command.Parameters.Add(commandId);
                     using(SqlDataReader reader = command.ExecuteReader())
                     {
+                        var ss = 
+                            reader.GetSchemaTable();
                         while(reader.Read())
                         {
                             return await CreateFromReader(reader);

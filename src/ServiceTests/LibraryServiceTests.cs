@@ -8,7 +8,7 @@ namespace ServiceTests
 {
     public class LibraryServiceTests
     {
-        private ILibraryService _libraryService = new LibraryService(new AbonentRepository(ConnectionStrings.MSSQLConnectionString), new BookRepository(ConnectionStrings.MSSQLConnectionString));
+        private ILibraryService _libraryService = new LibraryService();
 
         [Fact]
         public void TestGetMostFrequenceAuthor()
