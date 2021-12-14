@@ -3,8 +3,15 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Class provides access to work with books table to authors table in database
+    /// </summary>
     public class BookToAuthorRepository : ReflectionRepositoryBase<BookToAuthor>
     {
+        /// <summary>
+        /// Book to author repository constructor
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
         public BookToAuthorRepository(string connectionString) : base(connectionString)
         {
         }

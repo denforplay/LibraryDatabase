@@ -1,5 +1,8 @@
 ﻿namespace Library.Infrastructure
 {
+    /// <summary>
+    /// Provides base sql expressions templates
+    /// </summary>
     public class SqlExpressions
     {
         public static string CreateItemExpression = "INSERT INTO {0} ({1}) VALUES ({2})";

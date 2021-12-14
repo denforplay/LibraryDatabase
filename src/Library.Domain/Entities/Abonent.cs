@@ -10,9 +10,6 @@ namespace Library.Domain.Entities
     [Table("AbonentTable")]
     public class Abonent : EntityBase<int>
     {
-        [NotTableField]
-        public override int Id { get; set; }
-
         /// <summary>
         /// Abonent name
         /// </summary>
@@ -42,6 +39,7 @@ namespace Library.Domain.Entities
         /// List of books which abonent ever took
         /// </summary>
         [NotTableField]
+        [Relation(Enums.RelationType.OneToMany, typeof(Book), typeof(AbonentBook), nameof(AbonentBook.BookId))]
         public IEnumerable<Book> Books { get; set; }
 
         public override bool Equals(object? obj)

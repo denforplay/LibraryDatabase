@@ -11,9 +11,6 @@ namespace Library.Domain.Entities
     [Table("BookTable")]
     public class Book : EntityBase<int>
     {
-        [NotTableField]
-        public override int Id { get; set; }
-
         /// <summary>
         /// Book title
         /// </summary>

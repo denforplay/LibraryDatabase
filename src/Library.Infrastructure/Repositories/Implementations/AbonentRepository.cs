@@ -4,8 +4,15 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Class provides access to work with abonents in database
+    /// </summary>
     public class AbonentRepository : ReflectionRepositoryBase<Abonent>
     {
+        /// <summary>
+        /// Abonent repository constructor
+        /// </summary>
+        /// <param name="connectionString"></param>
         public AbonentRepository(string connectionString) : base(connectionString)
         {
         }

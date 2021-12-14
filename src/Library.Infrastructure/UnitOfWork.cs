@@ -5,6 +5,9 @@ using Library.Infrastructure.Repositories;
 
 namespace Library.Infrastructure
 {
+    /// <summary>
+    /// Class gives access to work with different repositories
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private IRepository<Abonent> _abonentRepository;

@@ -6,8 +6,15 @@ using System.Linq;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Class provides access to work with books table in database
+    /// </summary>
     public class BookRepository : ReflectionRepositoryBase<Book>
     {
+        /// <summary>
+        /// Book repository
+        /// </summary>
+        /// <param name="connectionString">Connection to database string</param>
         public BookRepository(string connectionString) : base(connectionString)
         {
         }

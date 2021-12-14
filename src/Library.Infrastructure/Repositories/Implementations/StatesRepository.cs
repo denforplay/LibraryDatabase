@@ -3,8 +3,15 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Class provides access to work with states table in database
+    /// </summary>
     public class StatesRepository : ReflectionRepositoryBase<State>
     {
+        /// <summary>
+        /// States repository constructor
+        /// </summary>
+        /// <param name="connectionString">Connection to database string</param>
         public StatesRepository(string connectionString) : base(connectionString)
         {
         }

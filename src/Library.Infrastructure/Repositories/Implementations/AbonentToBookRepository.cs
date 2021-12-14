@@ -4,8 +4,16 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Class provides access to work with abonents to books table in database
+    /// </summary>
     public class AbonentToBookRepository : ReflectionRepositoryBase<AbonentBook>
     {
+
+        /// <summary>
+        /// Abonent to book repository constructor
+        /// </summary>
+        /// <param name="connectionString">Connection to database string</param>
         public AbonentToBookRepository(string connectionString) : base(connectionString)
         {
         }

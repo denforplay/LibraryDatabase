@@ -30,10 +30,8 @@ namespace Library.Reports.Implementations
             PdfWriter.GetInstance(document, new FileStream(filepath, FileMode.Create));
             document.Open();
             PdfPTable table = new PdfPTable(2);
-            PdfPCell cell1 = new PdfPCell(new Phrase("Book title"));
-            PdfPCell cell2 = new PdfPCell(new Phrase("Count of taken"));
-            table.AddCell(cell1);
-            table.AddCell(cell2);
+            table.AddCell(new PdfPCell(new Phrase("Book title")));
+            table.AddCell(new PdfPCell(new Phrase("Count of taken")));
 
             for (int i = 0; i < booksGroupings.Count(); i++)
             {
@@ -72,11 +70,11 @@ namespace Library.Reports.Implementations
             {
                 string abonentFIO = $"{abonent.Name} {abonent.Name} {abonent.Patronymic}";
                 table.AddCell(new PdfPCell(new Phrase(abonentFIO)));
-                var genreCell = new PdfPCell();
+                var genreCell = new PdfPCell(new Phrase(""));
                 var booksCell = new PdfPCell(new Phrase(""));
                 foreach (var genreBooks in abonent.Books)
                 {
-                    genreCell.Phrase = new Phrase(genreCell.Phrase + $"{genreBooks.Key}\n");
+                    genreCell.Phrase = new Phrase(genreCell.Phrase.Content + $"{genreBooks.Key}\n");
                     foreach (var book in genreBooks)
                     {
                         booksCell.Phrase = new Phrase(booksCell.Phrase.Content + $"{book.Title},");
