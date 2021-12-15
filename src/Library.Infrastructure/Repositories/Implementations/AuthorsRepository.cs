@@ -31,5 +31,10 @@ namespace Library.Infrastructure.Repositories
             task.Start();
             return task;
         }
+
+        protected override Task CreateRelations(Author entity)
+        {
+            return Task.Factory.StartNew(() => { });
+        }
     }
 }

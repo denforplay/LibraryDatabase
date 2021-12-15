@@ -39,5 +39,26 @@ namespace Library.Infrastructure.Repositories
             task.Start();
             return task; 
         }
+
+        protected override Task CreateRelations(Abonent entity)
+        {
+            var abonentBooksRepository = new AbonentToBookRepository(ConnectionStrings.MSSQLConnectionString);
+            return Task.Factory.StartNew(async () =>
+            {
+                var lastAbonent = (await ReadAll()).Last();
+                foreach (var book in entity.Books)
+                {
+                    AbonentBook abonentBook = new AbonentBook
+                    {
+                        Id = lastAbonent.Id,
+                        BookId = book.Id,
+                        TakenDate = DateTime.Now,
+                        StateId = 0,
+                    };
+
+                    await abonentBooksRepository.Create(abonentBook);
+                }
+            });
+        }
     }
 }

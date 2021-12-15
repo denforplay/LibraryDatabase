@@ -45,9 +45,12 @@ namespace Library.Infrastructure.Repositories
                         command.Parameters.Add(new SqlParameter($"@{property.Name}", property.GetValue(entity)));
 
                     await command.ExecuteNonQueryAsync();
+                    await CreateRelations(entity);
                 }
             }
         }
+
+        protected abstract Task CreateRelations(T entity);
 
         public async Task Delete(int id)
         {

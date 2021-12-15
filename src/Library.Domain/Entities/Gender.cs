@@ -1,4 +1,5 @@
-﻿using Library.Domain.Base;
+﻿using Library.Domain.Attributes;
+using Library.Domain.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Domain.Entities
@@ -9,6 +10,9 @@ namespace Library.Domain.Entities
     [Table("GenderType")]
     public class Gender : EntityBase<int>
     {
+        [NotTableField]
+        public override int Id { get; set; }
+
         /// <summary>
         /// Gender name
         /// </summary>

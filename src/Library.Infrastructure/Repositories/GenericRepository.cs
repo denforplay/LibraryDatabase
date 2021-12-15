@@ -68,6 +68,11 @@ namespace Library.Infrastructure.Repositories
             });
         }
 
+        protected override Task CreateRelations(T entity)
+        {
+            return Task.Factory.StartNew(() => { });
+        }
+
         private async Task<object> CallGetByReflection(MethodInfo method, object obj)
         {
             return await InvokeAsync(method, obj, null);

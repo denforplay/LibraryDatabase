@@ -10,6 +10,9 @@ namespace Library.Domain.Entities
     [Table("AbonentTable")]
     public class Abonent : EntityBase<int>
     {
+        [NotTableField]
+        public override int Id { get; set; }
+
         /// <summary>
         /// Abonent name
         /// </summary>
