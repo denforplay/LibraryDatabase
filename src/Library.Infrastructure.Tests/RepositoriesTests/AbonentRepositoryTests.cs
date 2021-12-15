@@ -47,7 +47,6 @@ namespace Library.Infrastructure.Tests.RepositoriesTests
             await _abonentRepository.Delete(deletedAbonent.Id);
             var abonentsAfterDeleting = await _abonentRepository.ReadAll();
             Assert.Equal(abonentsBeforeDeleting.Count(), abonentsAfterDeleting.Count() + 1);
-            await _abonentRepository.Create(deletedAbonent);
         }
 
         [Fact]

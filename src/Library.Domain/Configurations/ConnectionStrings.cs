@@ -5,6 +5,6 @@
     /// </summary>
     public class ConnectionStrings
     {
-        public static string MSSQLConnectionString => "Server=(localdb)\\mssqllocaldb;Database=LibraryDb;Trusted_Connection=True";
+        public static string MSSQLConnectionString => @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName}\Library.Infrastructure\Data\LibraryDb.mdf;Integrated Security=True";
     }
 }

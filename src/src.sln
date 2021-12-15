@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Service", "Library.Services\Library.Service.csproj", "{F6F1375D-D87C-4E83-A953-705E3C38C965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{A498123C-A129-4989-93B8-5F1A3266E310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{A498123C-A129-4989-93B8-5F1A3266E310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
