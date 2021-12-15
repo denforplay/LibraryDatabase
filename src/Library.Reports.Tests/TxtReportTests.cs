@@ -8,17 +8,17 @@ namespace Library.Reports.Tests
 {
     public class TxtReportTests
     {
+        TxtReport txtReport = new TxtReport(new AbonentRepository(ConnectionStrings.MSSQLConnectionString), new AbonentToBookRepository(ConnectionStrings.MSSQLConnectionString));
+
         [Fact]
         public void TestTxtReport()
         {
-            TxtReport txtReport = new TxtReport(new AbonentRepository(ConnectionStrings.MSSQLConnectionString), new AbonentToBookRepository(ConnectionStrings.MSSQLConnectionString));
             txtReport.WriteBookFrequencyReport("txtreport.txt");
         }
 
         [Fact]
         public void TestWriteAbonentBooksReport()
         {
-            TxtReport txtReport = new TxtReport(new AbonentRepository(ConnectionStrings.MSSQLConnectionString), new AbonentToBookRepository(ConnectionStrings.MSSQLConnectionString));
             txtReport.WriteAbonentsBooksReport("txtreport2.txt", DateTime.MinValue, DateTime.MaxValue);
         }
     }
